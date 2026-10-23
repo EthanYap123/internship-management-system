@@ -1,0 +1,16 @@
+# Build output
+build/
+dist/
+out/
+*.class
+
+# NetBeans per-user settings
+nbproject/private/
+
+# Files the Admin System writes when it saves
+internships.dat
+internships_backup_*.dat
+
+# OS files
+.DS_Store
+Thumbs.db
