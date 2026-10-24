@@ -59,3 +59,7 @@ The file format is a company count, one `name;contact person;monthly allowance` 
 ```
 course;student ID;name;company;role;number of ratings;weeks;marks;weeks;marks;...
 ```
+
+## What I learned
+
+- Splitting a project with a partner meant agreeing on shared file formats and loading code early, before we each built our own subsystem.
