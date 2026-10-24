@@ -62,4 +62,5 @@ course;student ID;name;company;role;number of ratings;weeks;marks;weeks;marks;..
 
 ## What I learned
 
-- Splitting a project with a partner meant agreeing on shared file formats and loading code early, before we each built our own subsystem.
+- Janston and I built our subsystems separately and only joined them near the deadline, so we spent the last stretch fixing clashes between our code under time pressure.
+- Next time I'd agree on the shared classes and data format on day one and integrate early and often, so problems show up while there's still time to fix them calmly.
