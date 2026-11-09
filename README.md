@@ -2,6 +2,10 @@
 
 A Java Swing desktop app for managing student internship placements: searching placements, rating students' performance and reporting on each host company. Built as a pair project for ST0509 Java Programming (JPRG) at Singapore Polytechnic, 2026.
 
+**Live demo:** none, it's a desktop app. See [Getting started](#getting-started) to run it.
+
+[![CI](https://github.com/EthanYap123/internship-management-system/actions/workflows/ci.yml/badge.svg)](https://github.com/EthanYap123/internship-management-system/actions/workflows/ci.yml)
+
 ![Enquiry system showing a company search](docs/enquiry-company-search.png)
 
 ## Team
@@ -33,11 +37,23 @@ Every source file starts with a header saying which member wrote it.
 
 Both subsystems share one `InternshipManagement` object, so a change made in one is visible in the other straight away.
 
+## Tech stack
+
+Java 17, Swing (forms built in NetBeans), object-oriented design, text-file and object-serialized storage. CI runs on GitHub Actions.
+
+## Architecture
+
+`InternshipUser` is the entry point: it asks which subsystem to open. Both subsystems share one `InternshipManagement` object that holds the `Company` and `Student` records, so a change in one is visible in the other straight away.
+
+- **Enquiry System (Ethan):** `InternshipEnquiryGUI`.
+- **Admin System (Janston):** `InternshipAdminGUI`, `InternshipAdmin`, the `StudentTableModel` and `RatingTableModel` table models, `ActivityLog`, `DataIntegrityChecker` and `DeletedRecord` (undo).
+- **Storage (both):** `FileHandler` holds Ethan's text-file reading and writing for `internships.txt` and Janston's object-serialized `internships.dat` with timestamped backups.
+
 ## Scoring
 
 Each performance rating is a number of weeks assessed and a mark out of 100, converted to a grade point (80+ = 4, 70+ = 3, 60+ = 2, 50+ = 1). A student's overall score is the grade points weighted by weeks, out of 4.00.
 
-## Running it
+## Getting started
 
 **NetBeans:** open the folder as a project and run it. The main class is `InternshipUser`.
 
@@ -59,6 +75,17 @@ The file format is a company count, one `name;contact person;monthly allowance` 
 ```
 course;student ID;name;company;role;number of ratings;weeks;marks;weeks;marks;...
 ```
+
+## Testing and CI
+
+There is no automated test suite yet. Both subsystems were tested by hand against the sample data, including its deliberately unusual records.
+
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs on every push to `main` and every pull request: it compiles every source file on Java 17 (the NetBeans project's target) and packages a runnable jar, which is kept as a build artifact for 14 days.
+
+## What I'd improve next
+
+- Add JUnit tests for the search logic and the scoring formula, which are easy to test on their own.
+- Agree on the shared classes and file format with my partner on day one, as the section below explains.
 
 ## What I learned
 
